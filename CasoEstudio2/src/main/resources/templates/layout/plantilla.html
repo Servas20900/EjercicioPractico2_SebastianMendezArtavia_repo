@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <title>Dúlce Pastel</title>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/png" th:href="@{/img/image.png}"/>
+
+    <link rel="stylesheet" th:href="@{/css/styleP2.css}"/>
+
+</head>
+<body>
+    <header th:fragment="header">
+        <nav class="navbar">
+            <div class="navbar-items">
+                <div ><a class="navbar-logo" th:href="@{/}">Dúlce Pastel</a></div>
+                <br>
+                <ul class="navbar-links">
+                    <li><a th:href="@{/menu}">Menú</a></li>
+                    <li><a th:href="@{/trabajos}">Trabajos Realizados</a></li>
+                    <li><a th:href="@{/contacto}">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <footer>
+        <div class="container text-center">
+            <p>© 2025 Patisserie. Todos los derechos reservados.</p>
+            <div>
+                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

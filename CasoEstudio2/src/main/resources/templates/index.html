@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Dulce Pastelito</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <header th:replace="~{layout/plantilla :: header}" />
+
+    <section class="hero">
+        <img src="/img/10.png" class="fondo" alt="Pasteles">
+        <div class="hero-content">
+            <h1>DULCE PASTELITO</h1>
+            <p>El mejor sabor en cada bocado.</p>
+            <a th:href="@{/promociones}" class="btn">Ver promociones</a>
+        </div>
+    </section>
+
+    <section class="about">
+        <h2>Quiénes somos</h2>
+        <p>
+            Esta aventura comenzó en plena cuarentena, cuando doña Teresa, con toda la pasión y el sabor
+             heredado de generaciones, empezó a hornear pan desde su casa para compartir con vecinos y amigos. 
+             Lo que inició como una forma de sobrellevar los días difíciles, pronto se convirtió en un pequeño pero próspero negocio local, 
+             gracias al cariño de la gente y al irresistible aroma de pan recién hecho.
+
+            Hoy, “Dulce Pastelito” da un gran paso al mundo digital. Esta página web nace con el propósito de acercar nuestros 
+            productos a más personas, facilitar los pedidos de nuestros clientes fieles y, sobre todo, permitir que doña Teresa pueda 
+            dedicar más tiempo a lo que mejor sabe hacer: crear delicias que alegran el día.
+
+            Este sitio no solo es una herramienta para crecer, es también una forma de seguir compartiendo amor en forma de pan, 
+            con la calidez y dedicación que nos ha caracterizado desde el primer horno encendido.
+        </p>
+        <p>
+            A través de este desarrollo, enfrentamos desafíos técnicos y de planificación, llevando a cabo 
+            estudios de factibilidad que abarcan aspectos económicos, legales, de mercado y de tiempo. 
+            Nuestro objetivo es impulsar el crecimiento digital de “Dulce Pastelito”, optimizando la experiencia 
+            del cliente y aportando valor mediante una solución digital efectiva y personalizada.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer th:replace="~{layout/plantilla :: footer}" />
+
+</body>
+</html>
