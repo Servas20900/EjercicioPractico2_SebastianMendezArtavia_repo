@@ -1,6 +1,7 @@
 package CasoEstudio2.Caso2.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,7 +36,7 @@ public class Usuario implements Serializable {
     private String correo;
     private String telefono;
 
-    @OneToMany
-    @JoinColumn(name="id_usuario")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario")
     private List<Rol> roles;
 }
