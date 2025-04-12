@@ -1,7 +1,9 @@
 package CasoEstudio2.Caso2.Dao;
 
-import CasoEstudio2.Caso2.domain.RutaPermit;
 import org.springframework.data.jpa.repository.JpaRepository;
+import CasoEstudio2.Caso2.domain.RutaPermit;
 
+public interface RutaPermitDao extends JpaRepository<RutaPermit, Long> {
 
-public interface RutaPermitDao extends JpaRepository<RutaPermit, Integer> {}
+    // No se necesitan métodos especiales por ahora, JpaRepository te da todo
+}

@@ -1,9 +1,15 @@
 package CasoEstudio2.Caso2.domain;
 
-import jakarta.persistence.*;
-import lombok.Data;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.io.Serializable;
+import lombok.Data;
+import javax.validation.constraints.NotEmpty;
+
 
 @Entity
 @Data
@@ -16,9 +22,9 @@ public class Rol implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRol;
 
-    @Column(nullable = false)
-    private String nombre; 
+    @NotEmpty
+    private String nombre;
 
     @Column(name = "id_usuario")
-    private Long idUsuario; 
+    private Long idUsuario;
 }
