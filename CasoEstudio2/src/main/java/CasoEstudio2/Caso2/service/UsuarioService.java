@@ -21,10 +21,7 @@ public interface UsuarioService {
     // Se obtiene un Usuario, a partir del username o el correo del usuario
     public Usuario getUsuarioPorUsernameOCorreo(String username, String correo);
     
-    // Se inserta un nuevo usuario si el id del usuario está vacío
-    // Se actualiza un usuario si el id del usuario NO está vacío
-    public void save(Usuario usuario, boolean crearRolUser);
-    
+    public void save(Usuario usuario);
     // Se elimina el usuario que tiene el id pasado por parámetro
     public void delete(Usuario usuario);
 }
