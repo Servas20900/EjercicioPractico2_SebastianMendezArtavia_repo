@@ -1,8 +1,7 @@
 package CasoEstudio2.Caso2.service.impl;
 
-
-import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,15 +17,11 @@ import CasoEstudio2.Caso2.domain.Rol;
 import CasoEstudio2.Caso2.domain.Usuario;
 import CasoEstudio2.Caso2.service.UsuarioDetailsService;
 
-
 @Service("userDetailsService")
 public class UsuarioDetailsServiceImpl implements UsuarioDetailsService, UserDetailsService {
 
     @Autowired
     private UsuarioDao usuarioDao;
-
-    @Autowired
-    private HttpSession session;
 
     @Override
     @Transactional(readOnly = true)
@@ -34,23 +29,18 @@ public class UsuarioDetailsServiceImpl implements UsuarioDetailsService, UserDet
         // Busca el usuario por el username en la tabla
         Usuario usuario = usuarioDao.findByUsername(username);
 
-
         // Si no existe el usuario lanza una excepción
         if (usuario == null) {
             throw new UsernameNotFoundException(username);
         }
 
-        session.removeAttribute("usuarioImagen");
-        session.setAttribute("usuarioImagen", usuario.getRutaImagen());
-
-        // Si está acá es porque existe el usuario, sacamos los roles que tiene
+        // Sacamos los roles asociados al usuario
         var roles = new ArrayList<GrantedAuthority>();
-
-        for (Rol rol : usuario.getRoles()) { // Sacamos los roles
+        for (Rol rol : usuario.getRoles()) {
             roles.add(new SimpleGrantedAuthority(rol.getNombre()));
         }
 
-        // Se devuelve User (clase de UserDetails)
+        // Se devuelve el usuario como objeto User de Spring Security
         return new User(usuario.getUsername(), usuario.getPassword(), roles);
     }
 }

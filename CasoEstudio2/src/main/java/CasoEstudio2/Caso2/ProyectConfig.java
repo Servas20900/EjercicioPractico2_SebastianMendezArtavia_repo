@@ -33,24 +33,23 @@ public class ProyectConfig {
         return authConfig.getAuthenticationManager();
     }
 
-    // Configuración de seguridad de las rutas, login y logout
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/login", "/css/**", "/img/**", "/js/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .formLogin((form) -> form
-                .loginPage("/login")
-                .defaultSuccessUrl("/", true)
-                .permitAll()
-            )
-            .logout((logout) -> logout
-                .logoutSuccessUrl("/login?logout")
-                .permitAll()
-            );
+     @Bean
+     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+         http
+              .authorizeHttpRequests((requests) -> requests
+                  .requestMatchers("/", "/login", "/css/**", "/img/**", "/js/**").permitAll()
+                  .anyRequest().authenticated()
+              )
+             .formLogin((form) -> form
+                 .loginPage("/login")
+                 .defaultSuccessUrl("/", true)
+                 .permitAll()
+             )
+             .logout((logout) -> logout
+                 .logoutSuccessUrl("/login?logout")
+                 .permitAll()
+             );
 
-        return http.build();
-    }
+         return http.build();
+     }
 }
