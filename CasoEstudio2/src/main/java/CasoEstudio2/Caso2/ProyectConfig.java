@@ -1,32 +1,56 @@
 package CasoEstudio2.Caso2;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 @Configuration
 @EnableWebSecurity
 public class ProyectConfig {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-    @Autowired
-    public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
-        build.userDetailsService(userDetailsService)
-             .passwordEncoder(passwordEncoder());
+    public ProyectConfig(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
     }
 
-    // Bean para poder usar BCrypt desde otros lugares si se necesita
+    // Bean para codificar contraseñas usando BCrypt
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    // Bean para el AuthenticationManager que usa el userDetailsService y el passwordEncoder
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
+    }
+
+    // Configuración de seguridad de las rutas, login y logout
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests((requests) -> requests
+                .requestMatchers("/", "/login", "/css/**", "/img/**", "/js/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .formLogin((form) -> form
+                .loginPage("/login")
+                .defaultSuccessUrl("/", true)
+                .permitAll()
+            )
+            .logout((logout) -> logout
+                .logoutSuccessUrl("/login?logout")
+                .permitAll()
+            );
+
+        return http.build();
     }
 }

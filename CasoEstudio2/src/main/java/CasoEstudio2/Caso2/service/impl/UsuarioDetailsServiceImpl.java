@@ -34,6 +34,7 @@ public class UsuarioDetailsServiceImpl implements UsuarioDetailsService, UserDet
         // Busca el usuario por el username en la tabla
         Usuario usuario = usuarioDao.findByUsername(username);
 
+
         // Si no existe el usuario lanza una excepción
         if (usuario == null) {
             throw new UsernameNotFoundException(username);
