@@ -17,7 +17,7 @@ public class Factura implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_factura")
     private Long id_factura;
-    private Long id_usuariu;
+    private Long id_usuario;
     private Date fecha;
     private double total;
     private int estado; 
@@ -29,9 +29,9 @@ public class Factura implements Serializable {
     public Factura() {
     }
 
-    public Factura(Long id_factura, Long id_usuariu, Date fecha, double total, int estado, Usuario usuario) {
+    public Factura(Long id_factura, Long id_usuario, Date fecha, double total, int estado, Usuario usuario) {
         this.id_factura = id_factura;
-        this.id_usuariu = id_usuariu;
+        this.id_usuario = id_usuario;
         this.fecha = fecha;
         this.total = total;
         this.estado = estado;

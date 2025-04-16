@@ -50,16 +50,16 @@ CREATE TABLE ruta_permit (
   PRIMARY KEY (id_ruta)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
+
+-- =========================
+-- 2. TABLAS DE CARRITO Y PRODUCTOS
+-- =========================
 CREATE TABLE constante (
   id_constante INT AUTO_INCREMENT NOT NULL,
   atributo VARCHAR(25) NOT NULL,
   valor VARCHAR(150) NOT NULL,
   PRIMARY KEY (id_constante)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
-
--- =========================
--- 2. TABLAS DE CARRITO Y PRODUCTOS
--- =========================
 
 CREATE TABLE categoria (
   id_categoria INT NOT NULL AUTO_INCREMENT,
@@ -79,10 +79,6 @@ CREATE TABLE producto (
   PRIMARY KEY (id_producto),
   FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
-
--- =========================
--- 3. TABLAS DE FACTURACIÓN Y VENTAS
--- =========================
 
 CREATE TABLE factura (
   id_factura INT NOT NULL AUTO_INCREMENT,
