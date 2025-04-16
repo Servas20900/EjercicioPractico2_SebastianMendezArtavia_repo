@@ -11,7 +11,6 @@ import CasoEstudio2.Caso2.Dao.ProductoDao;
 import CasoEstudio2.Caso2.Dao.UsuarioDao;
 import CasoEstudio2.Caso2.service.ItemService;
 
-
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,7 +145,7 @@ public class ItemServiceImpl implements ItemService {
         }
 
         //Se debe registrar la factura incluyendo el usuario
-        Factura factura = new Factura(usuario.getIdUsuario(), null, null, 0, 0, usuario);
+        Factura factura = new Factura(usuario.getIdUsuario());
         factura = facturaDao.save(factura);
 
         //Se debe registrar las ventas de cada producto -actualizando existencias-
@@ -157,7 +156,7 @@ public class ItemServiceImpl implements ItemService {
             for (Item i : listaItems) {
                 var producto = productoDao.getReferenceById(i.getIdProducto());
                 if (producto.getExistencias() >= i.getCantidad()) {
-                    Venta venta = new Venta(factura.getId_factura(),
+                    Venta venta = new Venta(factura.getIdFactura(),
                             i.getIdProducto(),
                             i.getPrecio(),
                             i.getCantidad());
