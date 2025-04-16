@@ -41,8 +41,8 @@ public class ProyectConfig {
                   .anyRequest().authenticated()
               )
              .formLogin((form) -> form
-                 .loginPage("/login")
-                 .defaultSuccessUrl("/", true)
+                 .loginPage("/public/login")
+                 .defaultSuccessUrl("/private/home", true)
                  .permitAll()
              )
              .logout((logout) -> logout

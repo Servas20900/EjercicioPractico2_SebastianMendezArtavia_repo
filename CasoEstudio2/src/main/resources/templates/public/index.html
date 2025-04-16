@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
-<head th:replace="~{layout/plantilla :: head}">
-    <title>Dulce Pastelito</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+<head th:replace="~{common/public_navigation :: head}">
 </head>
 <body>
 
-    <header th:replace="~{layout/plantilla :: header}" />
+    <header th:replace="~{common/public_navigation :: header}" />
 
     <section class="hero">
         <img src="/img/10.png" class="fondo" alt="Pasteles">
@@ -25,7 +24,7 @@
 
     </section>
 
-    <footer th:replace="~{layout/plantilla :: footer}" />
+    <footer th:replace="~{common/public_navigation :: footer}" />
 
 </body>
 </html>
