@@ -19,13 +19,13 @@ public class CategoriaController {
     public String listarCategorias(Model model) {
         var categorias = categoriaService.listarCategorias();
         model.addAttribute("categorias", categorias);
-        return "private/categoria/listado"; // Asegúrate de que esta vista exista
+        return "private/categoria/listado"; 
     }
 
     @GetMapping("/nueva")
     public String nuevaCategoria(Model model) {
         model.addAttribute("categoria", new Categoria());
-        return "private/categoria/formulario"; // Asegúrate de que esta vista exista
+        return "private/categoria/formulario"; 
     }
 
     @PostMapping("/guardar")

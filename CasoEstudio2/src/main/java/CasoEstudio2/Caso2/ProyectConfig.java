@@ -38,6 +38,7 @@ public class ProyectConfig {
          http
               .authorizeHttpRequests((requests) -> requests
                   .requestMatchers("/", "/login", "/css/**", "/img/**", "/js/**, \"/private/**\" ").permitAll()
+                  .requestMatchers("/categoria/**").authenticated()
                   .anyRequest().authenticated()
               )
              .formLogin((form) -> form

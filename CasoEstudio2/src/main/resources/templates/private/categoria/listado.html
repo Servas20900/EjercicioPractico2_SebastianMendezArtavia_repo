@@ -5,10 +5,10 @@
 </head>
 <body>
 
-    <header th:replace="~{common/private_navigation :: header}" />
+    <header th:replace="~{common/private_navigation :: header}"></header>
 
     <h1>Categorías</h1>
-    <a th:href="@{/categorias/nueva}">Agregar nueva categoría</a>
+    <a th:href="@{/categoria/nueva}">Agregar nueva categoría</a>
     <table>
         <thead>
             <tr>
@@ -18,20 +18,21 @@
             </tr>
         </thead>
         <tbody>
+
+
             <tr th:each="categoria : ${categorias}">
                 <td th:text="${categoria.idCategoria}"></td>
-                <td th:text="${categoria.nombre}"></td>
                 <td>
-                    <a th:href="@{/categorias/editar/{id}(id=${categoria.idCategoria})}">Editar</a>
+                    <a th:href="@{/categoria/editar/{id}(id=${categoria.idCategoria})}">Editar</a>
                     |
-                    <a th:href="@{/categorias/eliminar/{id}(id=${categoria.idCategoria})}">Eliminar</a>
+                    <a th:href="@{/categoria/eliminar/{id}(id=${categoria.idCategoria})}">Eliminar</a>
                 </td>
             </tr>
         </tbody>
     </table>
 
 
-    <footer th:replace="~{common/private_navigation :: footer}" />
-
+    
+    <footer th:replace="~{common/private_navigation :: footer}"></footer>
 </body>
 </html>
