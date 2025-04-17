@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{common/private_navigation :: head}">
+</head>
+<body>
+
+    <header th:replace="~{common/private_navigation :: header}" />
+    <h1 th:text="${categoria.idCategoria == null ? 'Nueva Categoría' : 'Editar Categoría'}"></h1>
+    
+    <form th:action="@{/categorias/guardar}" th:object="${categoria}" method="post">
+        <input type="hidden" th:field="*{idCategoria}" />
+        
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" required />
+        
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a th:href="@{/categorias/listado}">Volver al listado</a>
+
+    <footer th:replace="~{common/private_navigation :: footer}" />
+
+</body>
+</html>

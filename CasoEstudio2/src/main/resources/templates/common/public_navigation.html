@@ -3,36 +3,40 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head th:fragment="head">
-    <title>Caso2</title>
+    <title>Librebria</title>
     <meta charset="UTF-8"/>
     <link rel="icon" type="image/png" th:href="@{/img/image.png}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <link rel="stylesheet" th:href="@{/css/home.css}"/>
-    <link rel="stylesheet" th:href="@{/css/commun.css}"/>
-    <link rel="stylesheet" th:href="@{/css/public_navigation.css}"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&display=swap");
+    </style>
 </head>
-<body>
+<body class="font-[Montserrat] bg-gray-900 text-gray-100 min-h-screen">
+
     <header th:fragment="header">
-        <nav class="public-navbar">
-            <div class="public-navbar-logo">
-                <a th:href="@{/}">NAME</a>
+        <nav class="flex justify-between items-center px-6 py-6 bg-gray-200 shadow-lg">
+            <div class="flex-1"></div> 
+            <a th:href="@{/}" class="font-great-vibes text-5xl text-blue-400 hover:text-blue-300 transition-all no-underline">
+                Librebria
+            </a>
+            <div class="flex-1 text-right">
+                <a th:href="@{/login}" class="text-lg font-semibold text-blue-400 hover:text-blue-300 no-underline">Log In</a>
             </div>
-            <ul class="public-navbar-links">
-                <li><a th:href="@{/login}">LogIn</a></li>
-                <li><a th:href="@{/singup}">SignUp</a></li>
-            </ul>
         </nav>
     </header>
 
-    <footer>
-        <div class="footer">
-            <p>© 2025 Patisserie. Todos los derechos reservados.</p>
-            <div>
-                <a href="#" class="comun-social-link"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="comun-social-link"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="comun-social-link"><i class="fab fa-twitter"></i></a>
+
+    <footer class="mt-12">
+        <div class="flex flex-col items-center justify-center bg-gray-200 text-gray-300 py-6">
+            <p class="mb-2">© 2025 Librebria. Todos los derechos reservados.</p>
+            <div class="flex">
+                <a href="#" class="text-blue-400 hover:text-blue-600 text-xl mx-2"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-blue-400 hover:text-blue-600 text-xl mx-2"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-blue-400 hover:text-blue-600 text-xl mx-2"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </footer>
+
 </body>
 </html>

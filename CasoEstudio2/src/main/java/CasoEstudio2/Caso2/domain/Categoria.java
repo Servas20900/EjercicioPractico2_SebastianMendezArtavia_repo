@@ -3,7 +3,6 @@ package CasoEstudio2.Caso2.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import lombok.Data;
 
 @Data
@@ -20,10 +19,6 @@ public class Categoria implements Serializable {
     private String descripcion;
     private String rutaImagen;
 
-
-    @OneToMany
-    @JoinColumn(name = "id_categoria", updatable = false)
-    List<Producto> productos;
 
     public Categoria() {
     }

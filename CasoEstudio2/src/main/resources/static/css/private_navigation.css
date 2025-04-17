@@ -1,131 +1,87 @@
-
-
-.navbar {
+/* Navbar privada */
+.private-navbar {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px 60px;
-  background-color: #ffffff; /* Fondo blanco para la navbar */
+  background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
-.navbar-logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: "Great Vibes", cursive;
-  font-size: 36px;
-  color: #d57a7a; /* Logo en un color cálido suave */
+.private-navbar-items {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.navbar-links {
+.private-navbar-logo {
+  font-family: "Great Vibes", cursive;
+  font-size: 36px;
+  color: #d57a7a;
+  text-decoration: none;
+}
+
+.private-navbar-links {
   display: flex;
   list-style: none;
   gap: 30px;
+  margin: 0;
+  padding: 0;
 }
 
-.navbar-links li a {
+.private-navbar-links li a {
   font-size: 18px;
   font-weight: 600;
-  color: #333333; /* Enlaces oscuros */
+  color: #333333;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.navbar-links li a:hover {
-  color: #d57a7a; /* Enlaces con hover suave */
+.private-navbar-links li a:hover {
+  color: #d57a7a;
 }
 
-.order-btn {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #d57a7a; /* Botón cálido */
-  color: #ffffff; /* Texto blanco en el botón */
-  border-radius: 8px;
-  font-size: 18px;
-  text-decoration: none;
-  transition: background 0.3s ease;
+.private-navbar-carrito {
+  margin-left: 20px;
 }
 
-.order-btn:hover {
-  background-color: #b85c5c; /* Hover en el botón más oscuro */
+.private-cart-icon {
+  color: #333333;
+  font-size: 22px;
+  transition: color 0.3s ease;
 }
 
+.private-cart-icon:hover {
+  color: #d57a7a;
+}
 
-/* Index */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 80vh;
+/* Footer común */
+.comun-footer-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  color: #333333; /* Texto oscuro */
+  padding: 20px;
+  background-color: #f1f1f1;
+  color: #333333;
+  margin-top: 50px;
+  flex-direction: column;
 }
 
-.fondo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 80%;
-  object-fit: cover;
-  opacity: 0.6; /* Fondo con opacidad para no quitar foco */
+.comun-footer-container p {
+  margin: 0;
+  margin-bottom: 10px;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
-
-.hero h1 {
-  font-size: 50px;
-  font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.hero p {
-  font-size: 22px;
-  margin-top: 10px;
-}
-
-/* Botón */
-.btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 24px;
-  background-color: #d57a7a; /* Fondo cálido para el botón */
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
+.comun-social-link {
+  color: #d57a7a;
+  font-size: 20px;
+  margin: 0 10px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-.btn:hover {
-  background-color: #b85c5c; 
-}
-
-/* Sección Quiénes Somos */
-.about {
-  padding: 50px;
-  background-color: #ffffff; 
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.about h2 {
-  font-size: 36px;
-  margin-bottom: 20px;
-  color: #222222; 
-}
-
-.about p {
-  font-size: 18px;
-  line-height: 1.6;
-  max-width: 800px;
-  margin: 0 auto 15px;
-  color: #444444; 
+.comun-social-link:hover {
+  color: #b85c5c;
 }

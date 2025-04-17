@@ -37,11 +37,11 @@ public class ProyectConfig {
      public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
          http
               .authorizeHttpRequests((requests) -> requests
-                  .requestMatchers("/", "/login", "/css/**", "/img/**", "/js/**").permitAll()
+                  .requestMatchers("/", "/login", "/css/**", "/img/**", "/js/**, \"/private/**\" ").permitAll()
                   .anyRequest().authenticated()
               )
              .formLogin((form) -> form
-                 .loginPage("/public/login")
+                 .loginPage("/login")
                  .defaultSuccessUrl("/private/home", true)
                  .permitAll()
              )

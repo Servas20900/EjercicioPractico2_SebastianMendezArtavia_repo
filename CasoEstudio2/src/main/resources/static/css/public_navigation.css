@@ -1,28 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&display=swap");
 
-body {
-  font-family: "Montserrat", sans-serif;
-  background-color: #f4f4f9;
-  color: #333333;
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
-  font-size: 50px;
-  color: #222222;
-}
-
-h2, h3, h4 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #444444;
-}
-
-p {
-  font-size: 18px;
-  color: #666666;
-}
 
 /* Navbar pública */
 .public-navbar {
@@ -77,3 +54,33 @@ p {
 .btn:hover {
   background-color: #b85c5c;
 }
+
+
+
+footer, .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f1f1f1; /* Fondo suave para el footer */
+    color: #333333; /* Texto oscuro en el footer */
+    margin-top: 50px;
+    flex-direction: column;
+  }
+  
+  footer p, .footer p {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  
+  .social-link, .comun-social-link {
+    color: #d57a7a; /* Color suave cálido para los enlaces sociales */
+    font-size: 20px;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  
+  .social-link:hover, .comun-social-link:hover {
+    color: #b85c5c; /* Hover en los enlaces sociales */
+  }
+  

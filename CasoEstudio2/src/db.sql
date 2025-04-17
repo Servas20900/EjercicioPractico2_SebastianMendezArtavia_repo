@@ -1,13 +1,14 @@
 -- Crear la base de datos
-CREATE DATABASE Caso2;
+CREATE DATABASE practicacaso2;
+
 
 -- Crear el usuario y otorgar privilegios
-CREATE USER 'usuario_caso2'@'%' IDENTIFIED BY 'Usuario_Clave.';
-GRANT ALL PRIVILEGES ON Caso2.* TO 'usuario_caso2'@'%';
+CREATE USER 'usuario_practicacaso2'@'%' IDENTIFIED BY 'Usuario_Clavepractica.';
+GRANT ALL PRIVILEGES ON practicacaso2.* TO 'usuario_practicacaso2'@'%';
 FLUSH PRIVILEGES;
 
 -- Usar la base de datos
-USE Caso2;
+USE practicacaso2;
 
 -- =========================
 -- 1. TABLAS DE SEGURIDAD
@@ -52,14 +53,8 @@ CREATE TABLE ruta_permit (
 
 
 -- =========================
--- 2. TABLAS DE CARRITO Y PRODUCTOS
+-- 2. cosas demas 
 -- =========================
-CREATE TABLE constante (
-  id_constante INT AUTO_INCREMENT NOT NULL,
-  atributo VARCHAR(25) NOT NULL,
-  valor VARCHAR(150) NOT NULL,
-  PRIMARY KEY (id_constante)
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE categoria (
   id_categoria INT NOT NULL AUTO_INCREMENT,
@@ -68,38 +63,36 @@ CREATE TABLE categoria (
   PRIMARY KEY (id_categoria)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
-CREATE TABLE producto (
-  id_producto INT NOT NULL AUTO_INCREMENT,
+-- =========================
+-- 3. TABLAS DE LA BIBLIOTECA (ACTUALIZADO)
+-- =========================
+
+-- Libros
+CREATE TABLE libro (
+  id_libro INT NOT NULL AUTO_INCREMENT,
+  titulo VARCHAR(150) NOT NULL,
+  autor VARCHAR(100) NOT NULL,
+  anio_publicacion INT,
   id_categoria INT NOT NULL,
-  descripcion VARCHAR(30) NOT NULL,
-  detalle VARCHAR(1600) NOT NULL,
-  precio DOUBLE,
-  existencias INT,
+  stock INT DEFAULT 1,
   ruta_imagen VARCHAR(1024),
-  PRIMARY KEY (id_producto),
+  PRIMARY KEY (id_libro),
   FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
-CREATE TABLE factura (
-  id_factura INT NOT NULL AUTO_INCREMENT,
+-- Préstamos (con devolución incluida)
+CREATE TABLE prestamo (
+  id_prestamo INT NOT NULL AUTO_INCREMENT,
   id_usuario INT NOT NULL,
-  fecha DATE,
-  total DOUBLE,
-  estado INT,
-  PRIMARY KEY (id_factura),
-  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+  id_libro INT NOT NULL,
+  fecha_prestamo DATE NOT NULL,
+  fecha_devolucion DATE,
+  devuelto BOOLEAN DEFAULT FALSE,
+  PRIMARY KEY (id_prestamo),
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+  FOREIGN KEY (id_libro) REFERENCES libro(id_libro)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
-CREATE TABLE venta (
-  id_venta INT NOT NULL AUTO_INCREMENT,
-  id_factura INT NOT NULL,
-  id_producto INT NOT NULL,
-  precio DOUBLE,
-  cantidad INT,
-  PRIMARY KEY (id_venta),
-  FOREIGN KEY (id_factura) REFERENCES factura(id_factura),
-  FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
 -- =========================
 -- 4. INSERCIÓN DE DATOS
@@ -107,9 +100,9 @@ CREATE TABLE venta (
 
 -- Usuarios
 INSERT INTO usuario (id_usuario, username, password, nombre, apellidos, correo, telefono) VALUES 
-(1, 'sebastian123', '$2a$10$P1.w58XvnaYQUQgZUCk4aO/RTRl8EValluCqB3S2VMLTbRt.tlre.', 'Sebastián', 'Mendez Artavia', 'seb.vargas@gmail.com', '6001-2234'),
-(2, 'fio', '$2a$10$GkEj.ZzmQa/aEfDmtLIh3udIH5fMphx/35d0EYeqZL5uzgCJ0lQRi', 'Fiorella', 'Jaen Artavia', 'fiorella.rj@hotmail.com', '7223-8855'),
-(3, 'magnusx', '$2a$10$koGR7eS22Pv5KdaVJKDcge04ZB53iMiw76.UjHPY.XyVYlYqXnPbO', 'Magnus', 'Mendez Artavia', 'magnus.alvarado@gmail.com', '6044-9191');
+(1, 'a', '$2a$10$P1.w58XvnaYQUQgZUCk4aO/RTRl8EValluCqB3S2VMLTbRt.tlre.', 'a', 'ab', 'a@gmail.com', '6001-2234'),
+(2, 'b', '$2a$10$GkEj.ZzmQa/aEfDmtLIh3udIH5fMphx/35d0EYeqZL5uzgCJ0lQRi', 'b', 'bc', 'b@hotmail.com', '7223-8855'),
+(3, 'c', '$2a$10$koGR7eS22Pv5KdaVJKDcge04ZB53iMiw76.UjHPY.XyVYlYqXnPbO', 'c', 'cd', 'c@gmail.com', '6044-9191');
 
 -- Roles base
 INSERT INTO role (rol) VALUES ('ADMIN'), ('VENDEDOR'), ('USER');
@@ -128,26 +121,6 @@ INSERT INTO categoria (id_categoria, descripcion, ruta_imagen) VALUES
 (1, 'Libros accion', '/img/categoria1.png'),
 (2, 'Libros animales', '/img/categoria2.png'),
 (3, 'Libros finanzas', '/img/categoria3.png');
-
--- Productos
-INSERT INTO producto (id_producto, id_categoria, descripcion, detalle, precio, existencias, ruta_imagen) VALUES 
-(1, 1, 'Rapidos&Furiosos', 'Tiene libro?', 20.00, 100, '/img/producto1.png'),
-(2, 1, 'Vacas', 'Que hacen las vacas?', 50.00, 50, '/img/producto2.png'),
-(3, 2, 'BancoPopular', 'Libraso, lealo', 15.00, 200, '/img/producto3.png');
-
--- Facturas
-INSERT INTO factura (id_factura, id_usuario, fecha, total, estado) VALUES
-(1, 1, '2025-04-01', 90.00, 2),
-(2, 2, '2025-04-02', 75.00, 2),
-(3, 3, '2025-04-03', 100.00, 2);
-
--- Ventas
-INSERT INTO venta (id_venta, id_factura, id_producto, precio, cantidad) VALUES
-(1, 1, 1, 20.00, 2),
-(2, 1, 2, 50.00, 1),
-(3, 2, 3, 15.00, 3),
-(4, 2, 1, 20.00, 1),
-(5, 3, 2, 50.00, 2);
 
 -- Rutas protegidas
 INSERT INTO ruta (patron, rol_name) VALUES
@@ -168,29 +141,22 @@ INSERT INTO ruta_permit (patron) VALUES
 ('/js/'),
 ('/webjars/');
 
--- Constantes
-INSERT INTO constante (atributo, valor) VALUES 
-('dominio', 'localhost'),
-('certificado', 'c:/cert'),
-('dolar', '520.75'),
-('paypal.client-id', 'AUjOjw5Q1I0QLTYjbvRS0j4Amd8xrUU2yL9UYyb3TOTcrazzd3G3lYRc6o7g9rOyZkfWEj2wxxDi0aRz'),
-('paypal.client-secret', 'EMdb08VRlo8Vusd_f4aAHRdTE14ujnV9mCYPovSmXCquLjzWd_EbTrRrNdYrF1-C4D4o-57wvua3YD2u'),
-('paypal.mode', 'sandbox'),
-('urlPaypalCancel', 'http://localhost/payment/cancel'),
-('urlPaypalSuccess', 'http://localhost/payment/success');
+--
 
--- =========================
--- 5. LIMPIEZA DE LA DB (opcional)
--- =========================
 
-/*
--- Primero, datos dependientes (con claves foráneas)
-DELETE FROM venta;
-DELETE FROM factura;
-DELETE FROM producto;
-DELETE FROM categoria;
-DELETE FROM rol;
+INSERT INTO libro (titulo, autor, anio_publicacion, id_categoria, stock) VALUES
+('El Alquimista', 'Paulo Coelho', 1990, 1, 5),
+('La granja de los animales', 'George Orwell', 1945, 2, 3),
+('Padre Rico Padre Pobre', 'Robert Kiyosaki', 1997, 3, 4),
+('Cien años de soledad', 'Gabriel García Márquez', 1967, 1, 2);
 
--- Luego, tabla principal
-DELETE FROM usuario;
-*/
+
+-- Préstamo activo (no devuelto aún)
+INSERT INTO prestamo (id_usuario, id_libro, fecha_prestamo, devuelto) VALUES
+(1, 1, '2025-04-10', FALSE),
+(2, 2, '2025-04-12', FALSE);
+
+-- Préstamo devuelto
+INSERT INTO prestamo (id_usuario, id_libro, fecha_prestamo, fecha_devolucion, devuelto) VALUES
+(3, 3, '2025-04-01', '2025-04-15', TRUE),
+(1, 4, '2025-03-20', '2025-04-02', TRUE);

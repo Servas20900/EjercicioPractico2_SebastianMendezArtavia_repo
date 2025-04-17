@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PrivateController {
 
-    @GetMapping("/home") 
+    @GetMapping("/private/home") 
     public String mostrarHome() {
         return "private/home";
     }
