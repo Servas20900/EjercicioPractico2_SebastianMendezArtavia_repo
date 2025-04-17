@@ -5,10 +5,11 @@
 </head>
 <body>
 
-    <header th:replace="~{common/private_navigation :: header}"></header>
-
+    <header th:replace="~{common/private_navigation :: header}" />
     <h1>Categorías</h1>
+    <br>
     <a th:href="@{/categoria/nueva}">Agregar nueva categoría</a>
+    <br>
     <table>
         <thead>
             <tr>
@@ -33,6 +34,7 @@
 
 
     
-    <footer th:replace="~{common/private_navigation :: footer}"></footer>
+    <footer th:replace="~{common/private_navigation :: footer}" />
+
 </body>
 </html>

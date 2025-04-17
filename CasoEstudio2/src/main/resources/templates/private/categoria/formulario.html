@@ -6,9 +6,11 @@
 <body>
 
     <header th:replace="~{common/private_navigation :: header}" />
+
+
     <h1 th:text="${categoria.idCategoria == null ? 'Nueva Categoría' : 'Editar Categoría'}"></h1>
     
-    <form th:action="@{/categorias/guardar}" th:object="${categoria}" method="post">
+    <form th:action="@{/categoria/guardar}" th:object="${categoria}" method="post">
         <input type="hidden" th:field="*{idCategoria}" />
         <label>Descripción:</label>
         <input type="text" th:field="*{descripcion}" required />
@@ -16,9 +18,11 @@
         <button type="submit">Guardar</button>
     </form>
 
-    <a th:href="@{/categorias/listado}">Volver al listado</a>
+    <a th:href="@{/categoria/listado}">Volver al listado</a>
+
 
     <footer th:replace="~{common/private_navigation :: footer}" />
+
 
 </body>
 </html>
